@@ -53,5 +53,3 @@ list.each_slice(7000000) do |slice|
     count += 1
 end
 puts "Process completed!"
-
-puts
