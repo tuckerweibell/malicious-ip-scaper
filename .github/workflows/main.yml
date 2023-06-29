@@ -5,4 +5,7 @@ jobs:
   Explore-GitHub-Actions:
     runs-on: ubuntu-latest
     steps:
-      - run: ls
+      - run: git clone https://github.com/PyGithub/PyGithub.git
+      - run: |
+          cd PyGithub
+          ls
