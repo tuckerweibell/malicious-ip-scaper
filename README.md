@@ -1,3 +1,5 @@
+![badge](https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/tuckerweibell/27228b9af08e477a7edff3e34f829454/raw/answer.json)
+
 # Malicious IP Scraper
 This is a public IP scaper that may be used to compile large lists of known malicious IP addresses into CSV files. The scraper pulls the latest OSINT data from Firehol and AbuseIPDB and parses IP addresses and IP CIDR ranges into CSV lists that may be imported into SIEMs, EDR systems, or WAFs to detect or prevent malicious activity in your environment.
 
