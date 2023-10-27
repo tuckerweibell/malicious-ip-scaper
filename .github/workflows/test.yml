@@ -1,0 +1,17 @@
+name: Sec Badges
+
+on: [pull_request, push]
+
+jobs:
+  myjob:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check Dependabot Alerts
+        id: alerts
+        uses: spicyparrot/check-dependabot@v1.2.0
+        with:
+          github_personal_token: ${{ secrets.GITHUB_TOKEN }}  
+
+      - name: Error Exit
+        if: steps.alerts.outputs.total_alerts > 0
+        run: echo "::error ::Open Vulnerability Alerts Found" && exit 1
