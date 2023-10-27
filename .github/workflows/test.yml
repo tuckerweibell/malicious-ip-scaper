@@ -4,7 +4,7 @@ on: [pull_request, push]
 
 jobs:
 
-  myjob:
+  count-alerts:
     runs-on: ubuntu-latest
     outputs:
       count: ${{ steps.alerts.outputs.total_alerts }}
@@ -16,10 +16,10 @@ jobs:
           github_personal_token: ${{ secrets.DEPEND_SECRET }}
 
 
-  add-badge:
-    needs: myjob
+  generate-badge:
+    needs: count-alerts
     env:
-      COUNT: ${{ needs.job1.outputs.count }}
+      COUNT: ${{ needs.count-alerts.outputs.count }}
     runs-on: ubuntu-latest
     steps:
     - name: Create the Badge
@@ -29,7 +29,7 @@ jobs:
         gistID: 27228b9af08e477a7edff3e34f829454
         filename: answer.json
         label: The Answer
-        message: $COUNT
-        valColorRange: $COUNT
+        message: ${{env.COUNT}}
+        valColorRange: ${{env.COUNT}}
         maxColorRange: 100
         minColorRange: 0
