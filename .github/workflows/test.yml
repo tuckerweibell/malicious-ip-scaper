@@ -32,5 +32,5 @@ jobs:
         message: ${{env.COUNT}}
         valColorRange: ${{env.COUNT}}
         maxColorRange: 0
-        minColorRange: 100
+        minColorRange: 10
         cacheSeconds: 300
