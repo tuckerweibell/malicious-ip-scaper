@@ -27,9 +27,10 @@ jobs:
       with:
         auth: ${{ secrets.DEPEND_SECRET }}
         gistID: 27228b9af08e477a7edff3e34f829454
-        filename: answer.json
+        filename: ${{ github.event.repository.name }}.json
         label: Dependabot Alerts
         message: ${{env.COUNT}}
         valColorRange: ${{env.COUNT}}
         maxColorRange: 0
         minColorRange: 100
+        cacheSeconds: 300
