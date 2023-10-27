@@ -15,6 +15,7 @@ jobs:
 
 
   add-badge:
+    needs: myjob
     runs-on: ubuntu-latest
     steps:
     - name: Create the Badge
