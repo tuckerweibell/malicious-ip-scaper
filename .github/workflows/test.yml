@@ -6,6 +6,8 @@ jobs:
 
   myjob:
     runs-on: ubuntu-latest
+    outputs:
+      count: ${{ steps.alerts.outputs.total_alerts }}
     steps:
       - name: Check Dependabot Alerts
         id: alerts
@@ -16,6 +18,8 @@ jobs:
 
   add-badge:
     needs: myjob
+    env:
+      COUNT: ${{ needs.job1.outputs.count }}
     runs-on: ubuntu-latest
     steps:
     - name: Create the Badge
@@ -25,7 +29,7 @@ jobs:
         gistID: 27228b9af08e477a7edff3e34f829454
         filename: answer.json
         label: The Answer
-        message: steps.alerts.outputs.total_alerts
-        valColorRange: steps.alerts.outputs.total_alerts
+        message: ${{ env.COUNT }}
+        valColorRange: ${{ env.COUNT }}
         maxColorRange: 100
         minColorRange: 0
