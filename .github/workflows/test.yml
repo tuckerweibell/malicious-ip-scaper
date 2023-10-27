@@ -25,7 +25,7 @@ jobs:
         gistID: 27228b9af08e477a7edff3e34f829454
         filename: answer.json
         label: The Answer
-        message: ${{ steps.alerts.outputs.total_alerts }}
-        valColorRange: ${{ steps.alerts.outputs.total_alerts }}
+        message: steps.alerts.outputs.total_alerts
+        valColorRange: steps.alerts.outputs.total_alerts
         maxColorRange: 100
         minColorRange: 0
