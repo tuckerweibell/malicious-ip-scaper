@@ -29,7 +29,7 @@ jobs:
         gistID: 27228b9af08e477a7edff3e34f829454
         filename: answer.json
         label: The Answer
-        message: ${{ env.COUNT }}
-        valColorRange: ${{ env.COUNT }}
+        message: $COUNT
+        valColorRange: $COUNT
         maxColorRange: 100
         minColorRange: 0
