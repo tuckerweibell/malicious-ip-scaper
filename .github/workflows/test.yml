@@ -4,7 +4,7 @@ on: [pull_request, push]
 
 jobs:
 
-  count-alerts:
+  dependabot-alerts:
     runs-on: ubuntu-latest
     outputs:
       count: ${{ steps.alerts.outputs.total_alerts }}
@@ -16,10 +16,10 @@ jobs:
           github_personal_token: ${{ secrets.DEPEND_SECRET }}
 
 
-  generate-badge:
-    needs: count-alerts
+  dependabot-badge:
+    needs: dependabot-alerts
     env:
-      COUNT: ${{ needs.count-alerts.outputs.count }}
+      COUNT: ${{ needs.dependabot-alerts.outputs.count }}
     runs-on: ubuntu-latest
     steps:
     - name: Create the Badge
@@ -28,8 +28,8 @@ jobs:
         auth: ${{ secrets.DEPEND_SECRET }}
         gistID: 27228b9af08e477a7edff3e34f829454
         filename: answer.json
-        label: The Answer
+        label: Dependabot Alerts
         message: ${{env.COUNT}}
         valColorRange: ${{env.COUNT}}
-        maxColorRange: 100
-        minColorRange: 0
+        maxColorRange: 0
+        minColorRange: 100
