@@ -3,6 +3,7 @@ name: Sec Badges
 on: [pull_request, push]
 
 jobs:
+
   myjob:
     runs-on: ubuntu-latest
     steps:
@@ -10,8 +11,20 @@ jobs:
         id: alerts
         uses: spicyparrot/check-dependabot@v1.2.0
         with:
-          github_personal_token: ${{ secrets.DEPEND_SECRET }}  
+          github_personal_token: ${{ secrets.DEPEND_SECRET }}
 
-      - name: Error Exit
-        if: steps.alerts.outputs.total_alerts > 0
-        run: echo "::error ::Open Vulnerability Alerts Found" && exit 1
+
+  add-badge:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Create the Badge
+      uses: schneegans/dynamic-badges-action@v1.7.0
+      with:
+        auth: ${{ secrets.DEPEND_SECRET }}
+        gistID: 27228b9af08e477a7edff3e34f829454
+        filename: answer.json
+        label: The Answer
+        message: ${{ steps.alerts.outputs.total_alerts }}
+        valColorRange: ${{ steps.alerts.outputs.total_alerts }}
+        maxColorRange: 100
+        minColorRange: 0
